@@ -82,6 +82,7 @@ class BehaviorTreeCPPConan(ConanFile):
 
         if Version(self.version) < "3.6.0":
             self.requires("cppzmq/4.9.0")
+            self.requires("boost/1.81.0")
         
         if Version(self.version) < "4.0.1":
             self.requires("foonathan-lexy/2022.12.1")
@@ -155,6 +156,7 @@ class BehaviorTreeCPPConan(ConanFile):
         
         if Version(self.version) < "3.6.0":
             self.cpp_info.components[libname].requires.extend(["cppzmq::cppzmq"])
+            self.cpp_info.components[libname].requires.append("boost::coroutine")
 
         if Version(self.version) < "4.1.0":
             self.cpp_info.components[libname].requires.extend(["ncurses::ncurses"])
