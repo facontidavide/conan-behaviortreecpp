@@ -7,10 +7,14 @@
 To create the package using provided version in local cache and test it:
 
 ```bash
-conan create . -s build_type=Debug -s compiler.cppstd=17 --build missing --version 4.1.0
+conan create . -s build_type=Debug -s compiler.cppstd=17 --build missing --version 4.1.1
 
 # for conan 1.x, the syntax
-conan create . 4.0.1@ -s build_type=Debug -s compiler.cppstd=17 --build missing 
+conan create . 4.1.1@ -s build_type=Debug -s compiler.cppstd=17 --build missing 
+
+# build using an option
+conan create . 4.1.1@ -o behaviortree.cpp:with_sqlite_logging=True -s build_type=Debug -s compiler.cppstd=17 --build missing 
+
 ```
 
 ### Adding a new version
@@ -20,9 +24,12 @@ You can **add a version** into the package and test it by following instructions
 
 1. Add the version under sources. To do that you should provide a URL and its sha256 cheksum. To get the checksum, please download target file and then:
    ```bash
-   # MacOS/Linux
+   # Linux
    sha256sum BehaviorTree.CPP-x.x.x.tar.gz
    
+   # MacOS
+   shasum -a 256 BehaviorTree.CPP-x.x.x.tar.gz
+
    # Windows
    Get-fileHash .\BehaviorTree.CPP-x.x.x.tar.gz
    ```
