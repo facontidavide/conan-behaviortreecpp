@@ -1,7 +1,9 @@
 #if BEHAVIORTREE_CPP_VERSION < 4
 #include "behaviortree_cpp_v3/bt_factory.h"
+#include "behaviortree_cpp_v3/loggers/bt_zmq_publisher.h"
 #else
 #include "behaviortree_cpp/bt_factory.h"
+#include "behaviortree_cpp/loggers/bt_zmq_publisher.h"
 #endif
 
 using namespace BT;
@@ -111,6 +113,13 @@ int main() {
     factory.registerNodeType<PrintTarget>("PrintTarget");
 
     auto tree = factory.createTreeFromText(xml_text);
+
+    try {
+      PublisherZMQ publisher(tree);
+    } catch (const std::exception &e) {
+      std::cerr << e.what() << '\n';
+    }
+
 #if BEHAVIORTREE_CPP_VERSION < 4
     tree.tickRoot();
 #else
