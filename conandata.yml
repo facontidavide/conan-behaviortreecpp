@@ -25,6 +25,13 @@ patches:
     - patch_file: "patches/4.0.1-0002-use-cci.patch"
       patch_description: "use zeromq cci package"
       patch_type: "conan"
+  "4.0.2":
+    - patch_file: "patches/4.0.1-0001-remove-fpic.patch"
+      patch_description: "remove CMAKE_POSITION_INDEPENDENT_CODE definition"
+      patch_type: "conan"
+    - patch_file: "patches/4.0.2-0002-use-cci.patch"
+      patch_description: "use zeromq cci package"
+      patch_type: "conan"
   "3.8.3":
     - patch_file: "patches/3.8.3-0001-remove-fpic.patch"
       patch_description: "remove CMAKE_POSITION_INDEPENDENT_CODE definition"
