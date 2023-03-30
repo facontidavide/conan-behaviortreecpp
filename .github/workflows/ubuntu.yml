@@ -12,6 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Restore Conan cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.conan
+          ~/.conan2
+        key: conan-cache-${{ runner.os }}
+        restore-keys: conan-cache-${{ runner.os }}
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y python3-pip
 
@@ -24,3 +33,12 @@ jobs:
     - name: Build and test package
       run: |
         conan create . -s build_type=Debug -s compiler.cppstd=17 --build missing --version 4.0.2
+
+    - name: Save Conan cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.conan
+          ~/.conan2
+        key: conan-cache-${{ runner.os }}
+        restore-keys: conan-cache-${{ runner.os }}
