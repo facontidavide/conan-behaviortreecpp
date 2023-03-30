@@ -18,6 +18,9 @@ jobs:
     - name: Install Conan
       run: sudo pip3 install conan
 
+    - name: Detect profile
+      run: conan profile detect
+
     - name: Build and test package
       run: |
         conan create . -s build_type=Debug -s compiler.cppstd=17 --build missing --version 4.0.2
