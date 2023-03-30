@@ -27,9 +27,6 @@ jobs:
     - name: Install Conan
       run: sudo pip3 install conan==1.59.0
 
-    - name: Detect profile
-      run: conan profile detect
-
     - name: Build and test package v3.5.6
       run: conan create . 3.5.6@ -s build_type=Debug -s compiler.cppstd=17 --build missing
       
